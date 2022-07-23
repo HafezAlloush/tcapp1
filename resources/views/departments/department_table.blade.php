@@ -1,9 +1,7 @@
 <div class="container pt-1">
 
     @csrf
-    @error('name')
-        <div class="alert alert-danger">{{ $message }}</div>
-    @enderror
+   
     <div id="jsGrid"></div>
 </div>
 
@@ -22,10 +20,10 @@
                 editing: true,
                 pageSize: 10,
                 pageButtonCount: 5,
-                pageFirstText :'الأول',
-                pageLastText  :'الأخير',
-                pageNextText:'التالي',
-                pagePrevText:'السابق',
+                pageFirstText: 'الأول',
+                pageLastText: 'الأخير',
+                pageNextText: 'التالي',
+                pagePrevText: 'السابق',
                 pagerFormat: " ورقة {pageIndex} من {pageCount} : {first} {prev} {pages} {next} {last} &nbsp;&nbsp",
 
                 controller: {
@@ -75,31 +73,33 @@
                             data: item
                         });
                     },
-
-
-
                 },
 
                 fields: [
-
+                    // id field
                     {
                         name: 'id',
                         type: "number",
                         title: 'م.',
-                        readOnly: false
+                        readOnly: false,
+                        inserting: false,
+                        editing: false,
                     },
+                    // name
                     {
                         name: "name",
                         type: "text",
                         title: 'اسم الدائرة/ القسم',
                         width: 'auto'
                     },
+                    // director name
                     {
                         name: "director_name",
                         type: "text",
                         title: 'اسم المدير',
                         width: 'auto'
                     },
+                    // controls
                     {
                         type: "control",
                         width: 100,
