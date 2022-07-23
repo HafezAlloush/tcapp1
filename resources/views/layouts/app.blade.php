@@ -16,8 +16,9 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -31,6 +32,11 @@
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
         rel="stylesheet">
     <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" />
+    <link type="text/css" rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
+
+
     <!-- BEGIN VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/vendors.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/tables/jsgrid/jsgrid-theme.min.css">
@@ -54,6 +60,7 @@
     data-menu="vertical-menu-modern" data-col="2-columns">
 
     <div id="app">
+        @csrf
         <!-- fixed-top-->
         @include('layouts.includes.header-navbar')
         <!-- ////////////////////////////////////////////////////////////////////////////-->
@@ -62,7 +69,7 @@
         <div class="app-content content">
             <div class="content-wrapper">
                 <div class="content-body">
-                    @yield('contnet')  
+                    @yield('contnet')
                 </div>
             </div>
         </div>

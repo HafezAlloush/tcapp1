@@ -18,7 +18,7 @@ class DepartmentController extends Controller
     {
         // اعداد الفلترة حسب الاسم
         $departments = Department::where('name', 'like', '%' . $request->name . '%');
-        
+
         // اعداد الفلترة حسب رقم الدائرة
         if (!empty($request->id)) {
             $departments = $departments->where('id', $request->id);
@@ -26,29 +26,13 @@ class DepartmentController extends Controller
 
         // جلب كل الاقسام بعد الفلترة
         $departments = $departments->get();
-        
+
         // تنفيذ جملة الاستعلام
         if ($request->ajax()) {
             return response()->json($departments);
         }
         return view('departments.index', compact('departments'));
     }
-    
-    // public function deplist(Request $request)
-    // {
-
-    //     $departments = Department::where('name', 'like', '%' . $request->name . '%');
-    //     if (!empty($request->id)) {
-    //         $departments = $departments->where('id', $request->id);
-    //     }
-    //     $departments = $departments->get();
-    //     // $departments = Department::get();
-    //     if ($request->ajax()) {
-    //         return response()->json($departments);
-    //     }
-    //     return view('departments.dep1', compact('departments'));
-    // }
-
 
 
     /**
@@ -67,9 +51,12 @@ class DepartmentController extends Controller
      * @param  \App\Http\Requests\StoreDepartmentRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreDepartmentRequest $request)
+    public function store(Request $request)
     {
-        //
+        $newDepartment = new Department;
+        $newDepartment->name = $request->name;
+        $newDepartment->save();
+        return ($request);
     }
 
     /**
@@ -101,9 +88,12 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDepartmentRequest $request, Department $department)
+    public function update(UpdateDepartmentRequest $request, $id)
     {
-        //
+        $department = Department::find($id);
+        $department->name = $request ->name;
+        $department->save();
+       
     }
 
     /**
@@ -112,8 +102,14 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Department $department)
+    public function destroy($id)
     {
-        //
+        $department = Department::find($id);
+        if ($department) {
+            $department->delete();
+            $department->save;
+            return ('department deleted successfully');
+        }
+        return ('department not exists');
     }
 }

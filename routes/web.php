@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\DepartmentController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DepartmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,10 +23,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/departments', [DepartmentController::class, 'index']) ->name('departments');
-Route::get('/dep', function(){
+Route::get('/dep', function () {
     return view('departments.dep1');
-}) ->name('departments1');
-Route::get('/deplist',[DepartmentController::class,'deplist'])->name('deplist');
-
+})->name('departments1');
+Route::get('/deplist', [DepartmentController::class, 'deplist'])->name('deplist');
 

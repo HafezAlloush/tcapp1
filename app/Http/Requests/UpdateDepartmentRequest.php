@@ -13,7 +13,7 @@ class UpdateDepartmentRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,15 @@ class UpdateDepartmentRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+           'name'=>'required|min:2'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required'=>'اسم الدائرة يجب أن لا يكون قيمة فارغة',
+            'name.min'=>'الاسم يجب ان لا يقل عن حرفين'
         ];
     }
 }
