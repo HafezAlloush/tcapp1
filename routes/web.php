@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\TraineeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,11 @@ Route::middleware('auth')->group(function () {
                 Route::post('/store', 'store');
                 Route::put('/{id}', 'update');
             });
+        });
+
+        // Trainee Routes
+        Route::controller(TraineeController::class)->group(function(){
+            route::get('/trainees', 'index')->name('trainees');
         });
 
 });

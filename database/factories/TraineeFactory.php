@@ -26,6 +26,7 @@ class TraineeFactory extends Factory
             'street' => $this->faker->address(),
             'mobile1' => $this->faker->phoneNumber(),
             'mobile2' => $this->faker->phoneNumber(),
+            'department_id'=>$this->faker->numberBetween($min = 1, $max = 10) 
 
         ];
     }
