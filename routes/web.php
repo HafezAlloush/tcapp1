@@ -28,3 +28,17 @@ Route::get('/dep', function () {
 })->name('departments1');
 Route::get('/deplist', [DepartmentController::class, 'deplist'])->name('deplist');
 
+
+
+Route::middleware('auth')->group(function () {
+        //Department routes
+        Route::controller(DepartmentController::class)->group(function () {
+            route::get('/departments', 'index')->name('departments');
+            route::prefix('/department')->group(function () {
+                Route::delete('/{id}', 'destroy')->name('department_delete');
+                Route::post('/store', 'store');
+                Route::put('/{id}', 'update');
+            });
+        });
+
+});

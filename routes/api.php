@@ -22,16 +22,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 
-Route::middleware('auth:sanctum')->group(function () {
-    // Route::prefix('/api')->group(function () {
-        //Department routes
-        Route::controller(DepartmentController::class)->group(function () {
-            route::get('/departments', 'index')->name('departments');
-            route::prefix('/department')->group(function () {
-                Route::delete('/{id}', 'destroy')->name('department_delete');
-                Route::post('/store', 'store');
-                Route::put('/{id}', 'update');
-            });
-        });
-    // });
-});
+// Route::middleware('auth:sanctum')->group(function () {
+//     // Route::prefix('/api')->group(function () {
+//         //Department routes
+//         Route::controller(DepartmentController::class)->group(function () {
+//             route::get('/departments', 'index')->name('departments');
+//             route::prefix('/department')->group(function () {
+//                 Route::delete('/{id}', 'destroy')->name('department_delete');
+//                 Route::post('/store', 'store');
+//                 Route::put('/{id}', 'update');
+//             });
+//         });
+//     // });
+// });

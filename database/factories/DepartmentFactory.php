@@ -15,7 +15,8 @@ class DepartmentFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->name(),
+            'name' => $this->faker->name(),
+            'director_name' => $this->faker->name(),
         ];
     }
 }

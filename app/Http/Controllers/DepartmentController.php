@@ -17,7 +17,7 @@ class DepartmentController extends Controller
     public function index(Request $request)
     {
         // اعداد الفلترة حسب الاسم
-        $departments = Department::where('name', 'like', '%' . $request->name . '%');
+        $departments = Department::where('name', 'like', '%' . $request->name . '%')->where('director_name', 'like', '%' . $request->director_name . '%');
 
         // اعداد الفلترة حسب رقم الدائرة
         if (!empty($request->id)) {
@@ -55,6 +55,7 @@ class DepartmentController extends Controller
     {
         $newDepartment = new Department;
         $newDepartment->name = $request->name;
+        $newDepartment->director_name = $request->director_name;
         $newDepartment->save();
         return ($request);
     }
@@ -92,6 +93,7 @@ class DepartmentController extends Controller
     {
         $department = Department::find($id);
         $department->name = $request ->name;
+        $department->director_name = $request->director_name;
         $department->save();
        
     }

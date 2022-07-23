@@ -1,7 +1,9 @@
 <div class="container pt-1">
 
     @csrf
-
+    @error('name')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     <div id="jsGrid"></div>
 </div>
 
@@ -18,8 +20,13 @@
                 paging: true,
                 autoload: true,
                 editing: true,
-                pageSize: 6,
+                pageSize: 10,
                 pageButtonCount: 5,
+                pageFirstText :'الأول',
+                pageLastText  :'الأخير',
+                pageNextText:'التالي',
+                pagePrevText:'السابق',
+                pagerFormat: " ورقة {pageIndex} من {pageCount} : {first} {prev} {pages} {next} {last} &nbsp;&nbsp",
 
                 controller: {
                     loadData: function(filter) {
@@ -52,8 +59,9 @@
                             success: function() {
                                 console.log('updated');
                             },
-                            error: function(e1, e2, e3) {
-                                console.log(e1.responseJSON.errors.name);
+                            error: function(err) {
+
+                                console.log(err.responseJSON.errors.name);
                             }
                         });
                     },
@@ -84,6 +92,12 @@
                         name: "name",
                         type: "text",
                         title: 'اسم الدائرة/ القسم',
+                        width: 'auto'
+                    },
+                    {
+                        name: "director_name",
+                        type: "text",
+                        title: 'اسم المدير',
                         width: 'auto'
                     },
                     {
