@@ -15,10 +15,10 @@ class Trainee extends Model
         'first_name',
         'father_name',
         'grand_name',
-        'family_name',
         'full_name',
-        'birth_date',
+        'family_name',
         'city',
+        'birth_date',
         'street',
         'mobile1',
         'mobile2',
@@ -29,6 +29,9 @@ class Trainee extends Model
         return $this->belongsTo(Department::class);
     }
 
+    // public function getFullNameAttribute(){
+    //     return "{$this->first_name} {$this->father_name} {$this->grand_name} {$this->family_name}";
+    // }
     ############## Start Department Name #######################
     public function getDepartmentIdAttribute($value)
     {

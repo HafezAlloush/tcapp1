@@ -14,9 +14,18 @@ class TraineeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $trainees = Trainee::get();
+        // foreach($trainees as $t){
+        //     $t->full_name = "{$t->first_name} {$t->father_name} {$t->grand_name} {$t->family_name}";
+        // $t->save();
+        // }
+        
+
+        if($request -> ajax()){
+            return response()->json($trainees);
+       }
         return ($trainees);
     }
 

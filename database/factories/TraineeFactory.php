@@ -20,7 +20,7 @@ class TraineeFactory extends Factory
             'father_name' => $this->faker->firstName(),
             'grand_name' => $this->faker->firstName(),
             'family_name' => $this->faker->lastName(),
-            'full_name' => $this->faker->name(),
+            // 'full_name' => $this->faker->name(),
             'birth_date' => $this->faker->dateTimeBetween($startDate = '-50 years', $endDate = '-15 years', $timezone = null), // DateTime('2003-03-15 02:00:49', 'Africa/Lagos')
             'city' => $this->faker->city(),
             'street' => $this->faker->address(),
