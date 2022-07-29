@@ -22,7 +22,6 @@ class TraineeController extends Controller
         // $t->save();
         // }
         
-
         if($request -> ajax()){
             return response()->json($trainees);
        }
