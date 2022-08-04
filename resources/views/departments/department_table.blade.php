@@ -1,14 +1,15 @@
 <div class="container pt-1">
-
     @csrf
-   
     <div id="jsGrid"></div>
+
 </div>
 
 
 @section('scripts')
     <script>
         $(document).ready(function() {
+
+
             $("#jsGrid").jsGrid({
                 height: "auto",
                 width: "100%",
@@ -42,7 +43,14 @@
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                             },
                             url: "department/store",
-                            data: item
+                            data: item,
+                            success: function() {
+                                toastsuccess();
+                            },
+                            error: function(er) {
+                                toastError(er);
+                            }
+
                         });
                     },
                     updateItem: function(item) {
@@ -58,8 +66,7 @@
                                 console.log('updated');
                             },
                             error: function(err) {
-
-                                console.log(err.responseJSON.errors.name);
+                                toastError(err);
                             }
                         });
                     },
@@ -70,7 +77,21 @@
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                             },
                             url: "department/" + item.id,
-                            data: item
+                            data: item,
+                            success: function(res) {
+                                toastr.info('تم الحذف بنجاح', 'السلام عليكم', {
+                                    positionClass: 'toast-top-left',
+                                    containerId: 'toast-top-left'
+                                });
+
+                            },
+                            error: function(er) {
+                                toastr.error('هناك خطأ في الحدف', 'السلام عليكم', {
+                                    positionClass: 'toast-top-left',
+                                    containerId: 'toast-top-left'
+                                });
+                                console.log(er);
+                            }
                         });
                     },
                 },

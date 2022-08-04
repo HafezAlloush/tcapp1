@@ -14,17 +14,25 @@ class TraineeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // update full_name field
+    // foreach($trainees as $t){
+    //     $t->full_name = "{$t->first_name} {$t->father_name} {$t->grand_name} {$t->family_name}";
+    // $t->update();
+    // }
+
+
+
     public function index(Request $request)
     {
-        $trainees = Trainee::get();
-        // foreach($trainees as $t){
-        //     $t->full_name = "{$t->first_name} {$t->father_name} {$t->grand_name} {$t->family_name}";
-        // $t->save();
-        // }
-        
-        if($request -> ajax()){
+        $trainees = Trainee::limit(100)->get();
+        if ($request->ajax()) {
             return response()->json($trainees);
-       }
+        }
+        return view('trainees.index', compact('trainees'));
+    }
+
+    public function getTrainees(){
+        $trainees = Trainee::limit(100)->get();
         return ($trainees);
     }
 

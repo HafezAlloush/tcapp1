@@ -24,16 +24,8 @@
         <div class="navbar-container content">
             <div class="collapse navbar-collapse" id="navbar-mobile">
                 <ul class="nav navbar-nav mr-auto float-left">
-
-
                 </ul>
                 <ul class="nav navbar-nav float-right">
-
-
-
-
-
-
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">

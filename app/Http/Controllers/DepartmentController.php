@@ -17,7 +17,8 @@ class DepartmentController extends Controller
     public function index(Request $request)
     {
         // اعداد الفلترة حسب الاسم
-        $departments = Department::where('name', 'like', '%' . $request->name . '%')->where('director_name', 'like', '%' . $request->director_name . '%');
+        $departments = Department::where('name', 'like', '%' . $request->name . '%')
+            ->where('director_name', 'like', '%' . $request->director_name . '%');
 
         // اعداد الفلترة حسب رقم الدائرة
         if (!empty($request->id)) {
@@ -51,7 +52,7 @@ class DepartmentController extends Controller
      * @param  \App\Http\Requests\StoreDepartmentRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDepartmentRequest $request)
     {
         $newDepartment = new Department;
         $newDepartment->name = $request->name;
@@ -92,10 +93,9 @@ class DepartmentController extends Controller
     public function update(UpdateDepartmentRequest $request, $id)
     {
         $department = Department::find($id);
-        $department->name = $request ->name;
+        $department->name = $request->name;
         $department->director_name = $request->director_name;
         $department->save();
-       
     }
 
     /**
@@ -106,6 +106,7 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
+       
         $department = Department::find($id);
         if ($department) {
             $department->delete();

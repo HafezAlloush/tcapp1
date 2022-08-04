@@ -1,23 +1,44 @@
 @extends('layouts.app')
+@section('contnet')
+<div class="row">
+    <div class="col-lg-6 col-12">
+      <div class="card pull-up">
+        <div class="card-content">
+          <div class="card-body">
+            <div class="media d-flex">
+              <div class="media-body text-left">
+                <h6 class="text-muted">الدوائر والأقسام </h6>
+                <h3>{{ App\Models\Department::count() }}</h3>
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
+              </div>
+              <div class="align-self-center">
+                <i class="icon-trophy success font-large-2 float-right"></i>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+    {{-- <div class="col-lg-6 col-12">
+      <div class="card pull-up">
+        <div class="card-content">
+          <div class="card-body">
+            <div class="media d-flex">
+              <div class="media-body text-left">
+                <h6 class="text-muted">Calls</h6>
+                <h3>3,568</h3>
+              </div>
+              <div class="align-self-center">
+                <i class="icon-call-in danger font-large-2 float-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> --}}
+  </div>
+
 @endsection
+
+
+

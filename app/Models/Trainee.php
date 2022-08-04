@@ -33,17 +33,17 @@ class Trainee extends Model
     //     return "{$this->first_name} {$this->father_name} {$this->grand_name} {$this->family_name}";
     // }
     ############## Start Department Name #######################
-    public function getDepartmentIdAttribute($value)
-    {
-        $department = Department::find($value);
-        return  $department->name;
-    }
+        // public function getDepartmentIdAttribute($value)
+        // {
+        //     $department = Department::find($value);
+        //     return  $department->name;
+        // }
 
-    public function setDepartmentIdAttribute($value)
-    {
-        $id = Department::where('name', $value);
-        $this->Attributes['department_id'] = $id;
-    }
+        // public function setDepartmentIdAttribute($value)
+        // {
+        //     $id = Department::where('name', $value);
+        //     $this->Attributes['department_id'] = $id;
+        // }
     ############## End Department Name #######################
 
 }

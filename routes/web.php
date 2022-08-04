@@ -1,9 +1,11 @@
 <?php
 
+use App\Models\Trainee;
+use App\Models\Department;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\TraineeController;
+use App\Http\Controllers\DepartmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +46,8 @@ Route::middleware('auth')->group(function () {
 
         // Trainee Routes
         Route::controller(TraineeController::class)->group(function(){
-            route::get('/trainees', 'index')->name('trainees');
+            route::get('/trainees', 'index' )->name('trainees');
+            
         });
 
 });

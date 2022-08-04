@@ -24,7 +24,14 @@ class StoreDepartmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:posts|min:255'
+            'name' => 'required|min:2'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required'=>'اسم الدائرة مطلوب',
+            'name.min'=>'الاسم اقل من الحد الأدنى'
         ];
     }
 }

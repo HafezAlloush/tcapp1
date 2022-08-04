@@ -10,8 +10,8 @@
     <meta name="keywords"
         content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
     <meta name="author" content="PIXINVENT">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>برنامج التدريب</title>
+    <title>HTML 5 Data Export - Modern Admin - Clean Bootstrap 4 Dashboard HTML Template +
+        Bitcoin Dashboard</title>
     <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
     <link
@@ -20,10 +20,11 @@
     <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
     <!-- BEGIN VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/vendors.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/extensions/toastr.css">
-
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/tables/jsgrid/jsgrid-theme.min.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/tables/jsgrid/jsgrid.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/tables/datatable/datatables.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="../../../app-assets/vendors/css/tables/extensions/buttons.dataTables.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="../../../app-assets/vendors/css/tables/datatable/buttons.bootstrap4.min.css">
     <!-- END VENDOR CSS-->
     <!-- BEGIN MODERN CSS-->
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/app.css">
@@ -33,8 +34,6 @@
     <link rel="stylesheet" type="text/css"
         href="../../../app-assets/css-rtl/core/menu/menu-types/vertical-menu-modern.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/core/colors/palette-gradient.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css-rtl/plugins/extensions/toastr.css">
-
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="../../../assets/css/style-rtl.css">
@@ -63,15 +62,19 @@
 
     </div>
 
-
     <!-- BEGIN VENDOR JS-->
     <script src="../../../app-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
     <!-- BEGIN VENDOR JS-->
     <!-- BEGIN PAGE VENDOR JS-->
-    <script src="../../../app-assets/vendors/js/extensions/toastr.min.js" type="text/javascript"></script>
-
-    <script src="../../../app-assets/vendors/js/tables/jsgrid/jsgrid.min.js" type="text/javascript"></script>
-    <script src="../../../app-assets/vendors/js/tables/jsgrid/griddata.js" type="text/javascript"></script>
+    <script src="../../../app-assets/vendors/js/tables/datatable/datatables.min.js" type="text/javascript"></script>
+    <script src="../../../app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js" type="text/javascript"></script>
+    <script src="../../../app-assets/vendors/js/tables/datatable/buttons.bootstrap4.min.js" type="text/javascript"></script>
+    <script src="../../../app-assets/vendors/js/tables/jszip.min.js" type="text/javascript"></script>
+    <script src="../../../app-assets/vendors/js/tables/pdfmake.min.js" type="text/javascript"></script>
+    <script src="../../../app-assets/vendors/js/tables/vfs_fonts.js" type="text/javascript"></script>
+    <script src="../../../app-assets/vendors/js/tables/buttons.html5.min.js" type="text/javascript"></script>
+    <script src="../../../app-assets/vendors/js/tables/buttons.print.min.js" type="text/javascript"></script>
+    <script src="../../../app-assets/vendors/js/tables/buttons.colVis.min.js" type="text/javascript"></script>
     <!-- END PAGE VENDOR JS-->
     <!-- BEGIN MODERN JS-->
     <script src="../../../app-assets/js/core/app-menu.js" type="text/javascript"></script>
@@ -79,32 +82,11 @@
     <script src="../../../app-assets/js/scripts/customizer.js" type="text/javascript"></script>
     <!-- END MODERN JS-->
     <!-- BEGIN PAGE LEVEL JS-->
-    <script src="../../../app-assets/js/scripts/tables/jsgrid/jsgrid.js" type="text/javascript"></script>
+    <script src="../../../app-assets/js/scripts/tables/datatables-extensions/datatable-button/datatable-html5.js"
+        type="text/javascript"></script>
     <!-- END PAGE LEVEL JS-->
 
     @yield('scripts')
-    <script>
-        // toast success message function
-        function toastsuccess() {
-            toastr.success('تمت العملية بنجاح', '', {
-                positionClass: 'toast-top-left',
-                containerId: 'toast-top-left'
-            });
-        };
-
-        // toast error messages fnnction
-        function toastError(err) {
-            var errors = err.responseJSON.errors;
-
-            for (const [key, value] of Object.entries(errors)) {
-                console.log(`${key}: ${value}`);
-                toastr.error(value, 'حدث خطا', {
-                    positionClass: 'toast-top-left',
-                    containerId: 'toast-top-left'
-                });
-            }
-        };
-    </script>
 </body>
 
 </html>
