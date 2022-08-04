@@ -1,106 +1,128 @@
 @extends('layouts.app')
 @section('contnet')
-<div>الدوائر والأقسام</div>
-
-@include('departments.department_table')
-    {{-- <!-- Basic scenario start -->
-    <section id="basic">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Basic Scenario</h4>
-                        <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                        <div class="heading-elements">
-                            <ul class="list-inline mb-0">
-                                <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                                <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                <li><a data-action="close"><i class="ft-x"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card-content collapse show">
-                        <div class="card-body card-dashboard ">
-                            <p>Grid with filtering, editing, inserting, deleting, sorting and
-                                paging. Data provided by controller.</p>
-                            <div id="basicScenario"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Basic scenario end -->
-    <!-- OData service scenario start -->
-    <section id="odata-service">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">OData Service Scenario</h4>
-                        <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                        <div class="heading-elements">
-                            <ul class="list-inline mb-0">
-                                <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                                <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                <li><a data-action="close"><i class="ft-x"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card-content collapse show">
-                        <div class="card-body card-dashboard ">
-                            <p>Controller loadData method requests data from OData service with
-                                ajax. Any asynchronous source could be used instead. Just return
-                                jQuery.promise from controller method. Field option itemTemplate
-                                allows to render any custom cell content, just return your
-                                markup as string, DOM Node or jQuery Element.</p>
-                            <div id="serviceScenario"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- OData service scenario end -->
-
-    <!-- Validation scenario start -->
-    <section id="validation-scenario">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Validation Scenario</h4>
-                        <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                        <div class="heading-elements">
-                            <ul class="list-inline mb-0">
-                                <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                                <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                <li><a data-action="close"><i class="ft-x"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card-content collapse show">
-                        <div class="card-body card-dashboard ">
-                            <p>Grid supports field values validation for inserting and editing.
-                                There are plenty of built-in validators available. Furthermore
-                                custom validators can be easily added.</p>
-                            <div id="validation"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Validation scenario end --> --}}
+    <div>الدوائر والأقسام</div>
+    <div class="container pt-1">
+        <div id="jsGrid"></div>
+    </div>
 @endsection
+
 
 @section('scripts')
     <script>
-        $(function() {
-            $('#departments').addClass('active');
+        $(document).ready(function() {
+            $("#jsGrid").jsGrid({
+                height: "auto",
+                width: "100%",
+                filtering: true,
+                inserting: true,
+                sorting: true,
+                paging: true,
+                autoload: true,
+                editing: true,
+                pageSize: 5,
+                pageButtonCount: 5,
+                pageFirstText: 'الأول',
+                pageLastText: 'الأخير',
+                pageNextText: 'التالي',
+                pagePrevText: 'السابق',
+                pagerFormat: " ورقة {pageIndex} من {pageCount} : {first} {prev} {pages} {next} {last} &nbsp;&nbsp",
+
+                controller: {
+                    loadData: function(filter) {
+                        return $.ajax({
+                            url: "{{ route('departments') }}",
+                            type: 'Get',
+                            data: filter,
+                        });
+                    },
+                    insertItem: function(item) {
+
+                        return $.ajax({
+                            type: "POST",
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            url: "department/store",
+                            data: item,
+                            success: function() {
+                                toastsuccess();
+                            },
+                            error: function(er) {
+                                toastError(er);
+                            }
+
+                        });
+                    },
+                    updateItem: function(item) {
+
+                        return $.ajax({
+                            type: "PUT",
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            url: "department/" + item.id,
+                            data: item,
+                            success: function() {
+                                toastsuccess();
+                            },
+                            error: function(er) {
+                                toastError(er);
+                            }
+                        });
+                    },
+                    deleteItem: function(item) {
+                        return $.ajax({
+                            type: "DELETE",
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            url: "department/" + item.id,
+                            data: item,
+                            success: function() {
+                                toastsuccess();
+                            },
+                            error: function(er) {
+                                toastError(er);
+                            }
+                        });
+                    },
+                },
+
+                fields: [
+                    // id field
+                    {
+                        name: 'id',
+                        type: "number",
+                        title: 'م.',
+                        readOnly: false,
+                        inserting: false,
+                        editing: false,
+                    },
+                    // name
+                    {
+                        name: "name",
+                        type: "text",
+                        title: 'اسم الدائرة/ القسم',
+                        width: 'auto'
+                    },
+                    // director name
+                    {
+                        name: "director_name",
+                        type: "text",
+                        title: 'اسم المدير',
+                        width: 'auto'
+                    },
+                    // controls
+                    {
+                        type: "control",
+                        width: 100,
+                    }
+
+                ]
+            });
+            
+            // set active list
+            activeList('#departments')
         });
     </script>
 @endsection

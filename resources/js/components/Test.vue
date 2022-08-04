@@ -11,6 +11,13 @@
                 </tr>
             </thead>
             <tbody>
+                
+                    <td>1</td>
+                    <td>hafez</td>
+                    <td>adnan</td>
+                    <td>ali</td>
+                    <td>alloush</td>
+            
                 <tr v-for="e in trainees">
                     <td>{{ e.PID }}</td>
                     <td>{{ e.first_name }}</td>
@@ -52,8 +59,9 @@ export default {
         },
     },
     mounted: function () {
-        this.getEmp();
         $("#example").DataTable();
+                this.getEmp();
+
     },
 };
 </script>

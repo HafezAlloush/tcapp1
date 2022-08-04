@@ -64,6 +64,10 @@
     </div>
 
 
+
+
+
+
     <!-- BEGIN VENDOR JS-->
     <script src="../../../app-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
     <!-- BEGIN VENDOR JS-->
@@ -73,6 +77,9 @@
     <script src="../../../app-assets/vendors/js/tables/jsgrid/jsgrid.min.js" type="text/javascript"></script>
     <script src="../../../app-assets/vendors/js/tables/jsgrid/griddata.js" type="text/javascript"></script>
     <!-- END PAGE VENDOR JS-->
+   
+    @yield('scripts')
+   
     <!-- BEGIN MODERN JS-->
     <script src="../../../app-assets/js/core/app-menu.js" type="text/javascript"></script>
     <script src="../../../app-assets/js/core/app.js" type="text/javascript"></script>
@@ -81,30 +88,10 @@
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="../../../app-assets/js/scripts/tables/jsgrid/jsgrid.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS-->
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
 
-    @yield('scripts')
-    <script>
-        // toast success message function
-        function toastsuccess() {
-            toastr.success('تمت العملية بنجاح', '', {
-                positionClass: 'toast-top-left',
-                containerId: 'toast-top-left'
-            });
-        };
 
-        // toast error messages fnnction
-        function toastError(err) {
-            var errors = err.responseJSON.errors;
 
-            for (const [key, value] of Object.entries(errors)) {
-                console.log(`${key}: ${value}`);
-                toastr.error(value, 'حدث خطا', {
-                    positionClass: 'toast-top-left',
-                    containerId: 'toast-top-left'
-                });
-            }
-        };
-    </script>
 </body>
 
 </html>

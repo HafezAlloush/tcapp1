@@ -5379,6 +5379,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -5398,8 +5405,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    this.getEmp();
     $("#example").DataTable();
+    this.getEmp();
   }
 });
 
@@ -28156,20 +28163,32 @@ var render = function () {
         _vm._v(" "),
         _c(
           "tbody",
-          _vm._l(_vm.trainees, function (e) {
-            return _c("tr", [
-              _c("td", [_vm._v(_vm._s(e.PID))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(e.first_name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(e.father_name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(e.grand_name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(e.family_name))]),
-            ])
-          }),
-          0
+          [
+            _c("td", [_vm._v("1")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("hafez")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("adnan")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("ali")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("alloush")]),
+            _vm._v(" "),
+            _vm._l(_vm.trainees, function (e) {
+              return _c("tr", [
+                _c("td", [_vm._v(_vm._s(e.PID))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(e.first_name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(e.father_name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(e.grand_name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(e.family_name))]),
+              ])
+            }),
+          ],
+          2
         ),
         _vm._v(" "),
         _vm._m(1),
