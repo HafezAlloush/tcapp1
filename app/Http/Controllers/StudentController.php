@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
@@ -13,9 +14,25 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+
+        $students = Student::select("*")->with('department')
+            ->when($request->has('PID'), function ($query) use ($request) {
+                $query->where('PID', $request->PID);
+            })
+            ->where('first_name', 'like', '%' . $request->first_name . '%')
+            ->where('father_name', 'like', '%' . $request->father_name . '%')
+            ->where('grand_name', 'like', '%' . $request->grand_name . '%')
+            ->where('family_name', 'like', '%' . $request->family_name . '%')
+            ->limit(100)
+            ->get();
+
+        // تنفيذ جملة الاستعلام
+        if ($request->ajax()) {
+            return response()->json($students);
+        }
+        return view('students.index', compact('students'));
     }
 
     /**

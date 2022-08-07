@@ -16,6 +16,15 @@
                 </ul>
             </li>
             <li class=" nav-item"><a href="index.html"><i class="la la-users"></i><span class="menu-title"
+                        data-i18n="nav.dash.main">الطلاب</span><span
+                        class="badge badge badge-info badge-pill float-right mr-2">3</span></a>
+                <ul class="menu-content">
+                    <li id="students"><a class="menu-item" href="{{ route('students') }}">الملف الشخصي</a>
+                    </li>
+
+                </ul>
+            </li>
+            {{-- <li class=" nav-item"><a href="index.html"><i class="la la-users"></i><span class="menu-title"
                         data-i18n="nav.dash.main">المتدربين</span><span
                         class="badge badge badge-info badge-pill float-right mr-2">3</span></a>
                 <ul class="menu-content">
@@ -23,7 +32,7 @@
                     </li>
 
                 </ul>
-            </li>
+            </li> --}}
 
         </ul>
     </div>

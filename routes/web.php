@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TraineeController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,11 +44,20 @@ Route::middleware('auth')->group(function () {
                 Route::put('/{id}', 'update');
             });
         });
-
-        // Trainee Routes
-        Route::controller(TraineeController::class)->group(function(){
-            route::get('/trainees', 'index' )->name('trainees');
-            
+        //Department routes
+        Route::controller(StudentController::class)->group(function () {
+            route::get('/students', 'index')->name('students');
+            // route::prefix('/student')->group(function () {
+            //     Route::delete('/{id}', 'destroy');
+            //     Route::post('/store', 'store');
+            //     Route::put('/{id}', 'update');
+            // });
         });
+
+        // // Trainee Routes
+        // Route::controller(TraineeController::class)->group(function(){
+        //     route::get('/trainees', 'index' )->name('trainees');
+            
+        // });
 
 });
